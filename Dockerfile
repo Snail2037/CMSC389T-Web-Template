@@ -4,3 +4,25 @@
 #expose port 8080 and run the app
 #the docker lecture will help you complete this file 
 #there should be a total of 9 lines
+
+FROM node:10-alpine
+
+RUN mkdir -p /home/node/app/ && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+USER node
+COPY --chown=node:node . .
+COPY assets/linkedinwhite.png ./assets/linkedinwhite.png
+COPY assets/githubwhite.png ./assets/githubwhite.png
+COPY assets/umd-logo.png ./assets/umd-logo.png
+COPY assets/Picture.JPG /assets/Picture.JPG
+COPY package.json ./
+COPY css/style.css ./css/style.css
+COPY app.js -/
+COPY index.html ./
+COPY nginx-conf/nginx.conf ./nginx-conf/nginx.conf
+
+RUN npm install
+EXPOSE 8080
+
+CMD ["node", "app.js"]
