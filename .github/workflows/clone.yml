@@ -12,6 +12,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.RSA_SECRET }}
           port: ${{ secrets.PORT }}
           script: |
             cd ../pub/
