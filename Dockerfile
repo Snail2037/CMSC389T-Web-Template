@@ -10,19 +10,15 @@ FROM node:10-alpine
 RUN mkdir -p /home/node/app/ && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
+
 USER node
-COPY --chown=node:node . .
-COPY assets/linkedinwhite.png ./assets/linkedinwhite.png
-COPY assets/githubwhite.png ./assets/githubwhite.png
-COPY assets/umd-logo.png ./assets/umd-logo.png
-COPY assets/Picture.JPG /assets/Picture.JPG
-COPY package.json ./
-COPY css/style.css ./css/style.css
-COPY app.js -/
-COPY index.html ./
-COPY nginx-conf/nginx.conf ./nginx-conf/nginx.conf
+
+EXPOSE 8080
+
+COPY * ./
 
 RUN npm install
-EXPOSE 8080
+
+COPY --chown=node:node . .
 
 CMD ["node", "app.js"]
