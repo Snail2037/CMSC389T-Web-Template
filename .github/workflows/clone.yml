@@ -12,8 +12,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          key: ${{ secrets.RSA_SECRET }}
           port: ${{ secrets.PORT }}
           script: |
+            ssh-keyscan -H github.com > ~/.ssh/known_hosts
             cd ../pub/
             git clone git@github.com:Snail2037/CMSC389T-Web-Template.git
